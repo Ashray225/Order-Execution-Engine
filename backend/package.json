@@ -25,6 +25,7 @@
     "@types/node": "^20.9.0",
     "@types/pg": "^8.10.7",
     "@types/uuid": "^9.0.7",
+    "@types/ws": "^8.18.1",
     "tsx": "^4.6.0",
     "typescript": "^5.2.2"
   }
