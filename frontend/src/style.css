@@ -1,0 +1,299 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f7fa;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  color: #2563eb;
+  margin-bottom: 8px;
+}
+
+header p {
+  color: #6b7280;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 30px;
+  min-height: 600px;
+}
+
+/* Side Panel */
+.side-panel {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.panel-section {
+  margin-bottom: 30px;
+}
+
+.panel-section:last-child {
+  margin-bottom: 0;
+}
+
+.panel-section h3 {
+  color: #374151;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Connection Status */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.status-indicator.connected {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-indicator.disconnected {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.connected .status-dot {
+  background: #22c55e;
+}
+
+.disconnected .status-dot {
+  background: #ef4444;
+}
+
+.connection-id {
+  font-family: monospace;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  background: #f3f4f6;
+  border-radius: 4px;
+}
+
+.connection-info {
+  font-size: 12px;
+  color: #6b7280;
+  font-style: italic;
+  text-align: center;
+  padding: 8px;
+  background: #f9fafb;
+  border-radius: 4px;
+}
+
+/* Content Area */
+.content-area {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.orders-section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.orders-section h3 {
+  color: #374151;
+  margin-bottom: 20px;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+#ordersContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+#ordersContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+#ordersContainer::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+#ordersContainer::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+#ordersContainer::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.no-orders {
+  text-align: center;
+  color: #6b7280;
+  padding: 40px;
+  font-style: italic;
+}
+
+/* Order Cards */
+.order-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: #fafafa;
+}
+
+.order-header {
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.order-id {
+  font-family: monospace;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.order-status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.status-pending { background: #fef3c7; color: #92400e; }
+.status-routing { background: #dbeafe; color: #1e40af; }
+.status-building { background: #e0e7ff; color: #3730a3; }
+.status-submitted { background: #fde68a; color: #92400e; }
+.status-confirmed { background: #dcfce7; color: #166534; }
+.status-failed { background: #fecaca; color: #991b1b; }
+
+.order-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.order-detail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-detail strong {
+  color: #374151;
+}
+
+.order-messages {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.order-message {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.order-message:last-child {
+  margin-bottom: 0;
+}
+
+.tx-hash {
+  font-family: monospace;
+  font-size: 11px;
+  word-break: break-all;
+  background: #f3f4f6;
+  padding: 4px 6px;
+  border-radius: 4px;
+  margin-top: 8px;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "order-execution-engine-backend",
+  "version": "1.0.0",
+  "description": "Order execution engine with DEX routing and WebSocket updates",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.4.2",
+    "@fastify/rate-limit": "^9.1.0",
+    "@fastify/websocket": "^8.3.1",
+    "bullmq": "^4.15.4",
+    "dotenv": "^17.2.3",
+    "fastify": "^4.24.3",
+    "knex": "^3.1.0",
+    "pg": "^8.11.3",
+    "redis": "^4.6.11",
+    "redis-server": "^1.2.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@types/pg": "^8.10.7",
+    "@types/uuid": "^9.0.7",
+    "tsx": "^4.6.0",
+    "typescript": "^5.2.2"
+  }
+}
