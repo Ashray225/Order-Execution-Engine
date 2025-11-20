@@ -58,8 +58,8 @@ export async function dlqRoutes(fastify: FastifyInstance) {
       const dlqQueue = orderQueue.getDeadLetterQueue();
       
       const [marketCounts, dlqCounts] = await Promise.all([
-        marketQueue.getJobCounts('failed', 'completed', 'active', 'waiting'),
-        dlqQueue.getJobCounts('completed', 'active', 'waiting')
+        marketQueue.getJobCounts('failed', 'completed', 'active', 'wait'),
+        dlqQueue.getJobCounts('completed', 'active', 'wait')
       ]);
       
       return reply.send({
@@ -88,9 +88,9 @@ export async function dlqRoutes(fastify: FastifyInstance) {
       // Clean completed jobs from DLQ
       await dlqQueue.clean(0, 1000, 'completed');
       
-      // Also clean any active/waiting jobs in DLQ
+      // Also clean any active/wait jobs in DLQ
       await dlqQueue.clean(0, 1000, 'active');
-      await dlqQueue.clean(0, 1000, 'waiting');
+      await dlqQueue.clean(0, 1000, 'wait');
       
       return reply.send({
         message: 'DLQ cleared successfully',
