@@ -33,5 +33,5 @@ db.raw('SELECT current_database(), current_user')
   .catch(err => console.error('Database connection failed:', err));
 
 db.raw("SELECT tablename FROM pg_tables WHERE schemaname = 'public'")
-  .then(result => console.log('Existing tables:', result.rows.map(r => r.tablename)))
+  .then(result => console.log('Existing tables:', result.rows.map((r: { tablename: string }) => r.tablename)))
   .catch(err => console.error('Failed to list tables:', err));
