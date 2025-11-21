@@ -49,11 +49,8 @@ process.on('SIGINT', async () => {
 
 const start = async () => {
   try {
-    console.log('process.env.PORT:', process.env.PORT);
     const port = parseInt(process.env.PORT || '3000');
     await fastify.listen({ port, host: '0.0.0.0' });
-    console.log(`Order Execution Engine running on http://localhost:${port}`);
-    console.log('Order workers listening for jobs...');
   } catch (err) {
     fastify.log.error(err);
     await orderWorker.close();

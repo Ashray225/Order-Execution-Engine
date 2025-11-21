@@ -3,11 +3,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log('process.env.DB_HOST:', process.env.DB_HOST);
-console.log('process.env.DB_PORT:', process.env.DB_PORT);
-console.log('process.env.DB_NAME:', process.env.DB_NAME);
-console.log('process.env.DB_USER:', process.env.DB_USER);
-
 const host = process.env.DB_HOST || 'localhost';
 const port = parseInt(process.env.DB_PORT || '5432');
 const database = process.env.DB_NAME || 'order_engine';
@@ -21,7 +16,8 @@ const dbConfig: Knex.Config = {
     port,
     database,
     user,
-    password
+    password,
+    ssl: { rejectUnauthorized: false }
   },
   pool: {
     min: 2,
@@ -30,3 +26,12 @@ const dbConfig: Knex.Config = {
 };
 
 export const db = knex(dbConfig);
+
+// Test database connection and list tables
+db.raw('SELECT current_database(), current_user')
+  .then(result => console.log('Connected to database:', result.rows[0]))
+  .catch(err => console.error('Database connection failed:', err));
+
+db.raw("SELECT tablename FROM pg_tables WHERE schemaname = 'public'")
+  .then(result => console.log('Existing tables:', result.rows.map(r => r.tablename)))
+  .catch(err => console.error('Failed to list tables:', err));

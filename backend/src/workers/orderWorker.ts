@@ -1,4 +1,4 @@
-import { Worker } from 'bullmq';
+import { Worker, ConnectionOptions } from 'bullmq';
 import { Order } from '../types/order';
 import { MarketOrderProcessor } from '../processors/marketOrderProcessor';
 import { LimitOrderProcessor } from '../processors/limitOrderProcessor';
@@ -19,13 +19,18 @@ export class OrderWorker {
   private orderQueue: OrderQueue;
 
   constructor() {
-    console.log('process.env.REDIS_HOST:', process.env.REDIS_HOST);
-    console.log('process.env.REDIS_PORT:', process.env.REDIS_PORT);
+    console.log('process.env.REDIS_URL:', process.env.REDIS_URL);
     
-    const redisHost = process.env.REDIS_HOST || 'localhost';
-    const redisPort = parseInt(process.env.REDIS_PORT || '6380');
-    
-    const connection = { host: redisHost, port: redisPort };
+    if (!process.env.REDIS_URL) {
+      throw new Error('REDIS_URL environment variable is required');
+    }
+    const connection: ConnectionOptions = { 
+      host: new URL(process.env.REDIS_URL).hostname,
+      port: parseInt(new URL(process.env.REDIS_URL).port),
+      username: new URL(process.env.REDIS_URL).username,
+      password: new URL(process.env.REDIS_URL).password,
+      tls: {}
+    };
     
     // Initialize processors and queue
     this.marketProcessor = new MarketOrderProcessor();

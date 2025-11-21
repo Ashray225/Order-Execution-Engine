@@ -22,9 +22,7 @@ export class MarketOrderProcessor {
       // Get connection ID from database
       const connection = await this.connectionRepo.getActiveConnection(order.id);
       connectionId = connection?.connection_id;
-      
-      console.log(`Processing market order: ${order.id}`);
-      
+
       // Step 1: Order received and queued
       if (connectionId) wsManager.sendStatus(connectionId, 'pending', { orderId: order.id });
       await this.db.updateOrderStatus(order.id, 'pending');

@@ -88,7 +88,6 @@ export class MockDexRouter {
     // Return best quote (highest net price for selling, lowest for buying)
     const bestQuote = raydiumNet > meteoraNet ? raydiumQuote : meteoraQuote;
     
-    console.log(`DEX Routing Decision:`);
     console.log(`   Raydium: ${raydiumQuote.price.toFixed(4)} (net: ${raydiumNet.toFixed(4)})`);
     console.log(`   Meteora: ${meteoraQuote.price.toFixed(4)} (net: ${meteoraNet.toFixed(4)})`);
     console.log(`   Selected: ${bestQuote.dex} - Better price by ${Math.abs(raydiumNet - meteoraNet).toFixed(4)}`);

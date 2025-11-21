@@ -1,4 +1,4 @@
-import { Queue } from 'bullmq';
+import { Queue, ConnectionOptions } from 'bullmq';
 import { Order } from '../types/order';
 import dotenv from 'dotenv';
 
@@ -11,12 +11,17 @@ export class OrderQueue {
   private deadLetterQueue: Queue;
 
   constructor() {
-    console.log('process.env.REDIS_HOST:', process.env.REDIS_HOST);
-    console.log('process.env.REDIS_PORT:', process.env.REDIS_PORT);
+    console.log('process.env.REDIS_URL:', process.env.REDIS_URL);
     
-    const connection = { 
-      host: process.env.REDIS_HOST || 'localhost', 
-      port: parseInt(process.env.REDIS_PORT || '6380') 
+    if (!process.env.REDIS_URL) {
+      throw new Error('REDIS_URL environment variable is required');
+    }
+    const connection: ConnectionOptions = { 
+      host: new URL(process.env.REDIS_URL).hostname,
+      port: parseInt(new URL(process.env.REDIS_URL).port),
+      username: new URL(process.env.REDIS_URL).username,
+      password: new URL(process.env.REDIS_URL).password,
+      tls: {}
     };
     
     // Main processing queues with retry configuration
