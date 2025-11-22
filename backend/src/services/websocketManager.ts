@@ -35,6 +35,11 @@ export class WebSocketManager {
       throw new Error(`Order ${orderId} not found`);
     }
 
+    // Only process orders with pending status
+    if (order.status !== 'pending') {
+      throw new Error(`Order ${orderId} has already been processed (status: ${order.status})`);
+    }
+
     // Send order to processing queue
     await this.orderQueue.addOrder(order);
     console.log(`Order ${orderId} sent to processing queue`);

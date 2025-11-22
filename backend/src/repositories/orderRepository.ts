@@ -7,7 +7,6 @@ dotenv.config();
 
 export class OrderRepository implements IRepository<Order> {
   async save(orderData: Order): Promise<void> {
-    console.log('process.env.ORDERS_TABLE:', process.env.ORDERS_TABLE);
     await db(process.env.ORDERS_TABLE || 'orders').insert({
       id: orderData.id,
       token_in: orderData.tokenIn,
