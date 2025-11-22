@@ -4,6 +4,10 @@ A real-time order execution engine with DEX routing, WebSocket status updates, a
 
 **Host URL**: [https://order-execution.netlify.app/](https://order-execution.netlify.app/)
 
+**Base Http Endpoint**: [https://order-execution-engine-vwq4.onrender.com/](https://order-execution-engine-vwq4.onrender.com/)
+
+**Base Websocket Endpoint**: [wss://order-execution-engine-vwq4.onrender.com/](wss://order-execution-engine-vwq4.onrender.com/)
+
 ## Overview
 
 This system processes **Market Orders** with automatic DEX routing between Raydium and Meteora, providing real-time status updates through WebSocket connections. The engine supports concurrent processing, retry mechanisms, and dead letter queue for failed orders.
