@@ -293,8 +293,6 @@ interface IRepository<T> {
 - Error tracking and logging
 
 ## Performance Metrics
-
-- **Throughput**: 100 orders/minute
 - **Concurrency**: 10 simultaneous orders
 - **Latency**: ~3-5 seconds per order (including DEX simulation)
 - **Reliability**: 3 retry attempts with exponential backoff
