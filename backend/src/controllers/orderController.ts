@@ -34,8 +34,7 @@ export class OrderController {
       return reply.send({
         orderId: order.id,
         status: 'created',
-        message: 'Order created. Connect WebSocket to start processing.',
-        websocketUrl: `/order/${order.id}`
+        message: 'Order created process initiated',
       });
     } catch (error) {
       return reply.status(500).send({
