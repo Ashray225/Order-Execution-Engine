@@ -245,9 +245,9 @@ CREATE TABLE failed_orders (
 
 ### Queue Architecture
 ```
-Order Creation → Database → Queue → Worker → DEX Router → Execution
-                     ↓
-              WebSocket Updates ← Status Tracking ← Processing Pipeline
+Order Creation → Database → WebSocket Connection → Fetch Order → Queue → Worker → DEX Router → Execution
+                                                                                           ↓
+                                                              WebSocket Updates ← Status Tracking
 ```
 
 ### Repository Pattern
